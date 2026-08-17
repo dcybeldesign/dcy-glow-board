@@ -18,6 +18,10 @@ Ce dashboard peut contrôler de vrais appareils physiques (serrures, systèmes d
 
 L'auteur n'est pas responsable des dommages, pertes, incidents de sécurité ou dysfonctionnements résultant de l'utilisation, du mauvais usage, ou de l'impossibilité d'utiliser ce logiciel.
 
+## Crédit
+
+Ce projet est libre d'utilisation, de partage et de modification sous licence MIT (voir ci-dessus). Si tu réutilises ce travail ou t'en inspires, une mention de l'auteur original est appréciée, même si ce n'est pas une obligation légale au-delà de la mention de copyright que la licence te demande déjà de conserver.
+
 ## État des tests
 
 Tous les styles de carte de ce projet n'ont pas été vérifiés sur du matériel réel : certains n'ont été testés que dans l'aperçu développeur intégré (entités simulées, aucun appareil réel impliqué). Voir la section "Ce qui est testé" du README pour l'état actuel par fonctionnalité. Considère tout ce qui est marqué "aperçu dev uniquement" comme non vérifié en conditions réelles.

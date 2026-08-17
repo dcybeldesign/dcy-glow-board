@@ -18,6 +18,10 @@ This dashboard can control real physical devices (locks, alarm systems, climate 
 
 The author is not liable for any damage, loss, security incident, or malfunction resulting from the use, misuse, or inability to use this software.
 
+## Credit
+
+This project is free to use, share, and modify under the MIT License (see above). If you reuse or build on this work, a credit back to the original author is appreciated, though not legally required beyond the copyright notice the license already asks you to keep.
+
 ## Testing status
 
 Not every card style in this project has been verified against real hardware: some have only been checked in the built-in developer preview (simulated entities, no real device involved). See the README's "What's tested" section for the current status per feature. Treat anything marked "dev-preview only" as unverified in real-world conditions.

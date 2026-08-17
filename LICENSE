@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 dcybel
+Copyright (c) 2026 dcybeldesign
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,4 +23,4 @@ SOFTWARE.
 ---
 
 Third-party assets bundled in this repository (weather icons) are covered by
-their own license — see `public/weather-icons/NOTICE.md`.
+their own license: see `public/weather-icons/NOTICE.md`.

@@ -74,6 +74,13 @@ This is a personal project, actively used and evolving, not a polished 1.0. See 
 - **Fonts**: Fraunces, Space Grotesk, and Spline Sans Mono via [Fontsource](https://fontsource.org/) (SIL OFL license).
 - **Home Assistant connectivity**: [home-assistant-js-websocket](https://github.com/home-assistant/home-assistant-js-websocket), the official library.
 
+## Support this project
+
+If this dashboard has been useful to you, you can support its development:
+
+- [GitHub Sponsors](https://github.com/sponsors/dcybeldesign)
+- [Buy Me a Coffee](https://buymeacoffee.com/dcybeldesign)
+
 ## License
 
 [MIT](LICENSE). See also [DISCLAIMER.md](DISCLAIMER.md) for use-at-your-own-risk terms specific to a dashboard that controls real devices.
