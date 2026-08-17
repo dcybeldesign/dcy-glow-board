@@ -1,0 +1,244 @@
+.room-nav-outer {
+  position: relative;
+}
+
+.room-nav-scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.room-nav-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.room-nav-wrap {
+  position: relative;
+  margin: 0 auto;
+}
+
+/* sits outside the scroll container so its blur bleed is never clipped;
+   left/width are set from JS to track the bar's real position and size
+   (the bar is centered/scrollable, so it rarely matches the outer's own width) */
+.room-nav-glow {
+  position: absolute;
+  top: -20px;
+  height: 110px;
+  border-radius: 999px;
+  filter: blur(32px);
+  opacity: 0.22;
+  z-index: -1;
+  transition:
+    background-color 0.4s ease,
+    left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.3s ease;
+  pointer-events: none;
+}
+
+.room-nav-bar-wobbler {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+}
+
+@keyframes room-nav-jelly-wobble {
+  0% {
+    transform: scale(1, 1);
+  }
+  12% {
+    transform: scale(1.035, 0.965);
+  }
+  26% {
+    transform: scale(0.975, 1.028);
+  }
+  40% {
+    transform: scale(1.02, 0.982);
+  }
+  54% {
+    transform: scale(0.989, 1.013);
+  }
+  68% {
+    transform: scale(1.01, 0.992);
+  }
+  82% {
+    transform: scale(0.996, 1.005);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+.room-nav-bar-wobbler.wobble,
+.room-nav-icons.wobble {
+  animation: room-nav-jelly-wobble 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
+}
+
+.room-nav-bar-path {
+  transition:
+    d 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    stroke 0.4s ease;
+}
+
+.room-nav-icons {
+  position: absolute;
+  left: 0;
+  top: 22px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  transform-origin: 50% 100%;
+}
+
+.room-nav-tab {
+  position: relative;
+  flex: none;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  cursor: pointer;
+  color: var(--ash-dim);
+  transform: translateY(0);
+  transition:
+    color 0.35s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.room-nav-tab:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.room-nav-tab svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.room-nav-tab.active svg {
+  /* the active room's icon is drawn once, crisp, on `.room-nav-active-icon-fg`
+     (which sits on the pastille) — hide this one so it isn't duplicated */
+  opacity: 0;
+}
+
+.room-nav-pastille {
+  position: absolute;
+  top: 4px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  z-index: 2;
+  transition:
+    left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+  animation: room-nav-breathe 3.2s ease-in-out infinite;
+}
+
+/* lives outside the scroll container, synced to the pastille's on-screen
+   position via JS, so its blur bleed is never clipped either */
+.room-nav-pastille-glow {
+  position: absolute;
+  top: 21px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(18px);
+  opacity: 0.85;
+  z-index: 5;
+  pointer-events: none;
+  transition:
+    left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.35s ease;
+}
+
+/* the active tab's icon, redrawn crisp on top of the glow (which now sits
+   above the bar) so it doesn't get washed out by that overlay */
+.room-nav-active-icon-fg {
+  position: absolute;
+  top: 21px;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  color: var(--ink);
+  z-index: 6;
+  pointer-events: none;
+  transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.room-nav-active-icon-fg svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* mirrors .room-nav-pastille's travel squash/stretch, with the icon's own
+   centering transform baked into every step so it doesn't snap off-center */
+@keyframes room-nav-icon-travel {
+  0% {
+    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+  }
+  20% {
+    transform: translate(-50%, -50%) scaleX(1.28) scaleY(0.85);
+  }
+  44% {
+    transform: translate(-50%, -50%) scaleX(1.36) scaleY(0.83);
+  }
+  64% {
+    transform: translate(-50%, -50%) scaleX(0.92) scaleY(1.06);
+  }
+  80% {
+    transform: translate(-50%, -50%) scaleX(1.06) scaleY(0.96);
+  }
+  92% {
+    transform: translate(-50%, -50%) scaleX(0.98) scaleY(1.01);
+  }
+  100% {
+    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+  }
+}
+.room-nav-active-icon-fg.travelling {
+  animation: room-nav-icon-travel 0.6s cubic-bezier(0.33, 1, 0.68, 1) 1;
+}
+
+@keyframes room-nav-breathe {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.08) saturate(1.12);
+  }
+}
+@keyframes room-nav-travel {
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+  20% {
+    transform: scaleX(1.28) scaleY(0.85);
+  }
+  44% {
+    transform: scaleX(1.36) scaleY(0.83);
+  }
+  64% {
+    transform: scaleX(0.92) scaleY(1.06);
+  }
+  80% {
+    transform: scaleX(1.06) scaleY(0.96);
+  }
+  92% {
+    transform: scaleX(0.98) scaleY(1.01);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+.room-nav-pastille.travelling {
+  animation:
+    room-nav-breathe 3.2s ease-in-out infinite,
+    room-nav-travel 0.6s cubic-bezier(0.33, 1, 0.68, 1) 1;
+}

@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/spline-sans-mono/400.css";
+@import "@fontsource/spline-sans-mono/500.css";
+
+:root {
+  /* Base — charbon chaud, pas noir-bleuté */
+  --ink: #120f0e;
+  --ember: #1c1815;
+  --ember-hover: #241f1b;
+  --seam: #322b25;
+
+  --parchment: #f2ece2;
+  --ash: #a89e91;
+  --ash-dim: #6b6258;
+
+  /* Accents porteurs de sens physique */
+  --flame: #ffb347;
+  --flame-glow: rgba(255, 179, 71, 0.4);
+  --frost: #6fb7c9;
+  --coral: #ff7a5c;
+  --moss: #8fae7c;
+  --danger: #ff6b5e;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Spline Sans Mono", ui-monospace, Consolas, monospace;
+
+  color-scheme: dark;
+  font: 15px/1.5 var(--font-body);
+  color: var(--parchment);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--ink);
+}
+
+/* La page reste défilable (molette, tactile, clavier) mais sans barre visible
+   — son apparition/disparition selon la hauteur du contenu d'un onglet
+   décalait la nav (logo + pastille active) d'une largeur de gouttière. */
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+.fan-spin {
+  animation: fan-spin 2.2s linear infinite;
+}
+
+@keyframes fan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-pulse {
+  animation: icon-pulse 0.45s ease;
+}
+
+@media (hover: hover) {
+  .card-hover {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.card-enter {
+  animation: card-enter 0.4s ease both;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes icon-pulse {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.32);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ha-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ha-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--parchment);
+  border: 3px solid var(--slider-color, var(--flame));
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.ha-slider::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+}
+
+.ha-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--parchment);
+  border: 3px solid var(--slider-color, var(--flame));
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.ha-slider::-moz-range-thumb:active {
+  transform: scale(1.15);
+}
+
+.ha-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--seam);
+}
+
+.ha-slider::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--slider-color, var(--flame));
+}
